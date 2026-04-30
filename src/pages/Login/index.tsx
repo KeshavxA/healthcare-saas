@@ -4,11 +4,13 @@ import { auth } from "../../services/firebase";
 import { useAuthStore } from "../../store/authStore";
 import { useNavigate } from "react-router-dom";
 import { LogIn, Mail, Lock, AlertCircle, Loader2 } from "lucide-react";
+import { useNotifications } from "../../hooks/useNotifications";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setUser, setLoading, setError, isLoading, error } = useAuthStore();
+  const { requestPermission } = useNotifications();
   const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -22,6 +24,7 @@ const LoginPage = () => {
         email: result.user.email, 
         displayName: result.user.displayName 
       });
+      await requestPermission();
       navigate("/dashboard");
     } catch (err: any) {
       setError(err.message);
