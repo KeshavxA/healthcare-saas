@@ -13,7 +13,7 @@ import {
 import { usePatientStore } from "../../store/patientStore";
 import { Patient, ViewMode } from "../../types";
 
-const StatusBadge = ({ status }: { status: Patient["status"] }) => {
+const StatusBadge = React.memo(({ status }: { status: Patient["status"] }) => {
   const styles: any = {
     Active: "bg-indigo-100 text-indigo-600",
     Critical: "bg-rose-100 text-rose-600",
@@ -25,9 +25,9 @@ const StatusBadge = ({ status }: { status: Patient["status"] }) => {
       {status}
     </span>
   );
-};
+});
 
-const PatientCard = ({ patient }: { patient: Patient }) => (
+const PatientCard = React.memo(({ patient }: { patient: Patient }) => (
   <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-all group relative overflow-hidden">
     <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
       <button className="text-slate-400 hover:text-slate-600">
@@ -68,9 +68,9 @@ const PatientCard = ({ patient }: { patient: Patient }) => (
       </div>
     </div>
   </div>
-);
+));
 
-const PatientRow = ({ patient }: { patient: Patient }) => (
+const PatientRow = React.memo(({ patient }: { patient: Patient }) => (
   <tr className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors group">
     <td className="py-4 px-4">
       <div className="flex items-center gap-3">
@@ -95,7 +95,7 @@ const PatientRow = ({ patient }: { patient: Patient }) => (
       </button>
     </td>
   </tr>
-);
+));
 
 const PatientsPage = () => {
   const {
