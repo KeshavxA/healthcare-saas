@@ -118,8 +118,8 @@ const PatientsPage = () => {
     <div className="space-y-8">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-800">Patients Directory</h1>
-          <p className="text-slate-500">Manage and monitor patient records</p>
+          <h1 className="text-2xl font-bold text-slate-800 dark:text-white">Patients Directory</h1>
+          <p className="text-slate-500 dark:text-slate-400">Manage and monitor patient records</p>
         </div>
         <button className="btn-primary flex items-center gap-2">
           <UserPlus className="w-5 h-5" />
@@ -127,34 +127,34 @@ const PatientsPage = () => {
         </button>
       </div>
 
-      <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-4">
+      <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col md:flex-row items-center gap-4">
         <div className="relative flex-1 w-full">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
           <input
             type="text"
             placeholder="Search by name, condition, or ID..."
-            className="input-field pl-12 bg-slate-50 border-transparent focus:bg-white"
+            className="input-field pl-12 bg-slate-50 dark:bg-slate-800 border-transparent focus:bg-white dark:focus:bg-slate-700 dark:text-white"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
 
-        <div className="flex items-center gap-2 bg-slate-50 p-1 rounded-xl">
+        <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-800 p-1 rounded-xl">
           <button
             onClick={() => setViewMode("grid")}
-            className={`p-2 rounded-lg transition-all ${viewMode === "grid" ? "bg-white text-indigo-600 shadow-sm" : "text-slate-400 hover:text-slate-600"}`}
+            className={`p-2 rounded-lg transition-all ${viewMode === "grid" ? "bg-white dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 shadow-sm" : "text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"}`}
           >
             <Grid2X2 className="w-5 h-5" />
           </button>
           <button
             onClick={() => setViewMode("list")}
-            className={`p-2 rounded-lg transition-all ${viewMode === "list" ? "bg-white text-indigo-600 shadow-sm" : "text-slate-400 hover:text-slate-600"}`}
+            className={`p-2 rounded-lg transition-all ${viewMode === "list" ? "bg-white dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 shadow-sm" : "text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"}`}
           >
             <List className="w-5 h-5" />
           </button>
         </div>
 
-        <button className="flex items-center gap-2 px-4 py-2 text-slate-600 font-medium hover:bg-slate-50 rounded-xl transition-all">
+        <button className="flex items-center gap-2 px-4 py-2 text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all">
           <Filter className="w-5 h-5" />
           Filters
         </button>
@@ -167,15 +167,15 @@ const PatientsPage = () => {
           ))}
         </div>
       ) : (
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 overflow-hidden">
           <table className="w-full text-left">
             <thead>
-              <tr className="bg-slate-50/50 border-b border-slate-100">
-                <th className="py-4 px-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Patient</th>
-                <th className="py-4 px-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Condition</th>
-                <th className="py-4 px-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Status</th>
-                <th className="py-4 px-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Doctor</th>
-                <th className="py-4 px-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Admitted</th>
+              <tr className="bg-slate-50/50 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800">
+                <th className="py-4 px-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Patient</th>
+                <th className="py-4 px-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Condition</th>
+                <th className="py-4 px-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
+                <th className="py-4 px-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Doctor</th>
+                <th className="py-4 px-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Admitted</th>
                 <th className="py-4 px-4 text-right"></th>
               </tr>
             </thead>
@@ -189,12 +189,12 @@ const PatientsPage = () => {
       )}
 
       {filteredPatients.length === 0 && (
-        <div className="text-center py-20 bg-white rounded-2xl border border-dashed border-slate-200">
-          <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-300">
+        <div className="text-center py-20 bg-white dark:bg-slate-900 rounded-2xl border border-dashed border-slate-200 dark:border-slate-800">
+          <div className="w-16 h-16 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-300 dark:text-slate-600">
             <Search className="w-8 h-8" />
           </div>
-          <h3 className="text-lg font-bold text-slate-800">No patients found</h3>
-          <p className="text-slate-500">Try adjusting your search or filters</p>
+          <h3 className="text-lg font-bold text-slate-800 dark:text-slate-200">No patients found</h3>
+          <p className="text-slate-500 dark:text-slate-400">Try adjusting your search or filters</p>
         </div>
       )}
     </div>
