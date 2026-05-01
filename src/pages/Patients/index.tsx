@@ -11,7 +11,7 @@ import {
   Calendar
 } from "lucide-react";
 import { usePatientStore } from "../../store/patientStore";
-import { Patient, ViewMode } from "../../types";
+import { Patient } from "../../types";
 
 const StatusBadge = React.memo(({ status }: { status: Patient["status"] }) => {
   const styles: any = {
@@ -103,10 +103,16 @@ const PatientsPage = () => {
     setViewMode,
     searchQuery,
     setSearchQuery,
-    getFilteredPatients
+    patients
   } = usePatientStore();
 
-  const filteredPatients = useMemo(() => getFilteredPatients(), [getFilteredPatients, searchQuery]);
+  const filteredPatients = useMemo(() => {
+    return patients.filter(
+      (p) =>
+        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.condition.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }, [patients, searchQuery]);
 
   return (
     <div className="space-y-8">

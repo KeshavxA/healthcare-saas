@@ -9,7 +9,6 @@ import {
   LogOut,
   ChevronRight,
   HeartPulse,
-  Menu,
   ChevronLeft
 } from "lucide-react";
 import { useAuthStore } from "../../store/authStore";
