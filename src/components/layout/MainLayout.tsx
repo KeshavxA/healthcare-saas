@@ -9,7 +9,6 @@ import {
   LogOut,
   ChevronRight,
   HeartPulse,
-  Menu,
   ChevronLeft,
   Moon,
   Sun

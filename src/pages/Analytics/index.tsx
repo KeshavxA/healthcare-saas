@@ -11,14 +11,14 @@ const AnalyticsPage = () => {
   return (
     <div className="space-y-8 pb-10">
       <div>
-        <h1 className="text-2xl font-bold text-slate-800">Hospital Analytics</h1>
-        <p className="text-slate-500">Real-time performance metrics</p>
+        <h1 className="text-2xl font-bold text-slate-800 dark:text-white">Hospital Analytics</h1>
+        <p className="text-slate-500 dark:text-slate-400 font-medium">Real-time performance metrics</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-          <h3 className="text-lg font-bold text-slate-800 mb-6">Patient Admissions Trend</h3>
+        {/* Area Chart */}
+        <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 transition-colors">
+          <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-6">Patient Admissions Trend</h3>
           <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={analyticsData.monthlyAdmissions}>
@@ -28,11 +28,11 @@ const AnalyticsPage = () => {
                     <stop offset="95%" stopColor="#6366f1" stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" className="dark:opacity-10" />
                 <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fill: '#64748b', fontSize: 12 }} dy={10} />
                 <YAxis axisLine={false} tickLine={false} tick={{ fill: '#64748b', fontSize: 12 }} />
                 <Tooltip
-                  contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
+                  contentStyle={{ borderRadius: '12px', border: 'none', backgroundColor: '#1e293b', color: '#fff', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
                 />
                 <Area type="monotone" dataKey="patients" stroke="#6366f1" strokeWidth={3} fillOpacity={1} fill="url(#colorAdmissions)" />
               </AreaChart>
@@ -40,17 +40,18 @@ const AnalyticsPage = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-          <h3 className="text-lg font-bold text-slate-800 mb-6">Condition Distribution</h3>
+        {/* Bar Chart */}
+        <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 transition-colors">
+          <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-6">Condition Distribution</h3>
           <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={analyticsData.conditionBreakdown} layout="vertical">
-                <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#f1f5f9" />
+                <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#f1f5f9" className="dark:opacity-10" />
                 <XAxis type="number" hide />
                 <YAxis dataKey="name" type="category" axisLine={false} tickLine={false} tick={{ fill: '#64748b', fontSize: 12 }} width={100} />
                 <Tooltip
-                  cursor={{ fill: '#f8fafc' }}
-                  contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
+                  cursor={{ fill: '#f8fafc', opacity: 0.1 }}
+                  contentStyle={{ borderRadius: '12px', border: 'none', backgroundColor: '#1e293b', color: '#fff', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
                 />
                 <Bar dataKey="value" fill="#6366f1" radius={[0, 4, 4, 0]} barSize={20} />
               </BarChart>
@@ -58,9 +59,10 @@ const AnalyticsPage = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-          <h3 className="text-lg font-bold text-slate-800 mb-6">Gender Demographics</h3>
-          <div className="h-[300px] flex items-center">
+        {/* Pie Chart */}
+        <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 transition-colors">
+          <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-6">Gender Demographics</h3>
+          <div className="h-[300px] flex flex-col md:flex-row items-center">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -71,32 +73,34 @@ const AnalyticsPage = () => {
                   outerRadius={100}
                   paddingAngle={5}
                   dataKey="value"
+                  stroke="none"
                 >
                   {analyticsData.genderDistribution.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
                 <Tooltip
-                  contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
+                  contentStyle={{ borderRadius: '12px', border: 'none', backgroundColor: '#1e293b', color: '#fff', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
                 />
               </PieChart>
             </ResponsiveContainer>
-            <div className="flex flex-col gap-3 pr-10">
+            <div className="flex md:flex-col gap-3 pr-4 md:pr-10">
               {analyticsData.genderDistribution.map((entry, index) => (
                 <div key={entry.name} className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }} />
-                  <span className="text-sm text-slate-600 font-medium">{entry.name}</span>
+                  <span className="text-sm text-slate-600 dark:text-slate-400 font-medium">{entry.name}</span>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        <div className="bg-indigo-600 p-8 rounded-2xl shadow-lg flex flex-col justify-center text-white relative overflow-hidden">
+        {/* Weekly Summary Card */}
+        <div className="bg-indigo-600 p-8 rounded-2xl shadow-lg flex flex-col justify-center text-white relative overflow-hidden transition-colors">
           <div className="relative z-10">
             <h3 className="text-xl font-bold mb-2">Weekly Summary</h3>
             <p className="text-indigo-100 mb-6 opacity-80">Your hospital efficiency is up by 15% this week compared to the national average.</p>
-            <button className="bg-white text-indigo-600 px-6 py-2 rounded-xl font-bold hover:bg-indigo-50 transition-colors">
+            <button className="bg-white text-indigo-600 px-6 py-2 rounded-xl font-bold hover:bg-indigo-50 transition-colors active:scale-95">
               Download Report
             </button>
           </div>
