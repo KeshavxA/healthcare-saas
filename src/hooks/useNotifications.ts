@@ -1,5 +1,13 @@
 import { useCallback } from "react";
 
+/**
+ * ARCHITECTURAL DECISION: Hook-based Notification Orchestration
+ * We encapsulate notification logic in a custom hook to separate the "What" (UI triggering an alert)
+ * from the "How" (Service Worker registration, Permission API, and Local Notification API).
+ * This allows us to easily swap the delivery mechanism (e.g., moving from local notifications 
+ * to Firebase Cloud Messaging) without touching the component layer.
+ */
+
 export const useNotifications = () => {
   const registerSW = useCallback(async () => {
     if ("serviceWorker" in navigator) {

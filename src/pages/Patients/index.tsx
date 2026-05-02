@@ -1,4 +1,12 @@
 import React, { useMemo } from "react";
+/**
+ * ARCHITECTURAL DECISION: Heavy Memoization Strategy
+ * In a healthcare dashboard with potentially hundreds of patient records, UI jank is unacceptable.
+ * 1. React.memo is used for PatientCard and StatusBadge to prevent unnecessary re-renders of the 
+ *    entire grid when only the search query changes.
+ * 2. useMemo handles the filtering logic to ensure expensive array operations only run when 
+ *    the dependencies (patients or searchQuery) actually change, maintaining a buttery-smooth 60fps.
+ */
 import {
   Search,
   Grid2X2,
