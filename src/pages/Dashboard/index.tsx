@@ -65,7 +65,7 @@ const DashboardPage = () => {
           value="248"
           icon={Users}
           trend="+12%"
-          color="bg-indigo-500"
+          color="bg-indigo-600"
         />
         <StatCard
           title="Critical Cases"
@@ -79,14 +79,14 @@ const DashboardPage = () => {
           value="34"
           icon={Calendar}
           trend="+8%"
-          color="bg-amber-500"
+          color="bg-violet-600"
         />
         <StatCard
           title="Recovery Rate"
           value="87%"
           icon={HeartPulse}
           trend="+2%"
-          color="bg-emerald-500"
+          color="bg-indigo-500"
         />
       </div>
 
@@ -153,10 +153,10 @@ const DashboardPage = () => {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <QuickAction icon={Calendar} label="New Schedule" color="bg-indigo-500" />
-            <QuickAction icon={Activity} label="Vitals Check" color="bg-rose-500" />
-            <QuickAction icon={Users} label="Staff Directory" color="bg-amber-500" />
-            <QuickAction icon={HeartPulse} label="Health Reports" color="bg-emerald-500" />
+            <QuickAction icon={Calendar} label="New Schedule" color="bg-indigo-600" />
+            <QuickAction icon={Activity} label="Vitals Check" color="bg-violet-600" />
+            <QuickAction icon={Users} label="Staff Directory" color="bg-indigo-500" />
+            <QuickAction icon={HeartPulse} label="Health Reports" color="bg-violet-500" />
           </div>
         </div>
       </div>

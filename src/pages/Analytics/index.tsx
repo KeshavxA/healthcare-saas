@@ -5,7 +5,7 @@ import {
 } from "recharts";
 import { analyticsData } from "../../constants/mockData";
 
-const COLORS = ["#6366f1", "#8b5cf6", "#ec4899", "#f59e0b", "#10b981"];
+const COLORS = ["#6366f1", "#818cf8", "#8b5cf6", "#a78bfa", "#c084fc"];
 
 const AnalyticsPage = () => {
   return (
@@ -53,7 +53,7 @@ const AnalyticsPage = () => {
                   cursor={{ fill: '#f8fafc', opacity: 0.1 }}
                   contentStyle={{ borderRadius: '12px', border: 'none', backgroundColor: '#1e293b', color: '#fff', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
                 />
-                <Bar dataKey="value" fill="#6366f1" radius={[0, 4, 4, 0]} barSize={20} />
+                <Bar dataKey="value" fill="#8b5cf6" radius={[0, 4, 4, 0]} barSize={20} />
               </BarChart>
             </ResponsiveContainer>
           </div>
