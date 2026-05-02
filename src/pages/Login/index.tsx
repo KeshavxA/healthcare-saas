@@ -96,10 +96,21 @@ const LoginPage = () => {
           </button>
         </form>
 
-        <div className="mt-8 pt-6 border-t border-slate-100 text-center">
-          <p className="text-sm text-slate-500">
-            Forgot password? <span className="text-indigo-600 font-medium cursor-pointer hover:underline">Contact IT Support</span>
-          </p>
+        <div className="mt-8 pt-6 border-t border-slate-100 space-y-4">
+          <button
+            onClick={() => {
+              setUser({ uid: "demo-123", email: "demo@healthcare.com", displayName: "Demo Doctor" });
+              navigate("/dashboard");
+            }}
+            className="w-full py-3 px-4 border-2 border-indigo-600 text-indigo-600 rounded-xl font-bold hover:bg-indigo-50 transition-all active:scale-95 flex items-center justify-center gap-2"
+          >
+            Try Demo Mode
+          </button>
+          <div className="text-center">
+            <p className="text-sm text-slate-500">
+              Forgot password? <span className="text-indigo-600 font-medium cursor-pointer hover:underline">Contact IT Support</span>
+            </p>
+          </div>
         </div>
       </div>
     </div>
