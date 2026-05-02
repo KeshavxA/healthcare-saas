@@ -7,10 +7,12 @@ import {
   PlusCircle,
   Download,
   Search,
-  ExternalLink
+  ExternalLink,
+  AlertTriangle
 } from "lucide-react";
 import Skeleton from "../../components/common/Skeleton";
 import { mockPatients } from "../../constants/mockData";
+import { useNotifications } from "../../hooks/useNotifications";
 
 const StatCard = ({ title, value, icon: Icon, trend, color }: any) => (
   <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-md transition-shadow">
@@ -71,12 +73,21 @@ const QuickAction = ({ icon: Icon, label, color }: any) => (
 
 const DashboardPage = () => {
   const [isLoading, setIsLoading] = React.useState(true);
+  const { sendNotification } = useNotifications();
   const recentPatients = mockPatients.slice(0, 5);
 
   React.useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 1200);
     return () => clearTimeout(timer);
   }, []);
+
+  const simulateAlert = () => {
+    sendNotification(
+      "Critical Alert: Room 402",
+      "Patient John Doe's heart rate has exceeded 140 BPM. Immediate assistance required.",
+      "Critical"
+    );
+  };
 
   if (isLoading) return <DashboardSkeleton />;
 
@@ -88,6 +99,13 @@ const DashboardPage = () => {
           <p className="text-slate-500 dark:text-slate-400 font-medium">Welcome back, Dr. Sharma 👋</p>
         </div>
         <div className="flex items-center gap-3">
+          <button 
+            onClick={simulateAlert}
+            className="flex items-center gap-2 px-4 py-2.5 bg-rose-50 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400 border border-rose-100 dark:border-rose-800 rounded-xl font-bold hover:bg-rose-100 dark:hover:bg-rose-900/30 transition-all active:scale-95"
+          >
+            <AlertTriangle className="w-5 h-5" />
+            <span className="hidden sm:inline">Simulate Alert</span>
+          </button>
           <button className="p-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
             <Download className="w-5 h-5" />
           </button>
