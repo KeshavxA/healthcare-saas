@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { usePatientStore } from "../../store/patientStore";
 import { Patient } from "../../types";
+import Skeleton from "../../components/common/Skeleton";
 
 const StatusBadge = React.memo(({ status }: { status: Patient["status"] }) => {
   const styles: any = {
@@ -26,6 +27,47 @@ const StatusBadge = React.memo(({ status }: { status: Patient["status"] }) => {
     </span>
   );
 });
+
+const PatientCardSkeleton = () => (
+  <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-100 dark:border-slate-800">
+    <div className="flex items-center gap-4 mb-6">
+      <Skeleton variant="circular" className="w-14 h-14 flex-shrink-0" />
+      <div className="space-y-2 flex-1">
+        <Skeleton className="h-5 w-3/4" />
+        <Skeleton className="h-4 w-1/2" />
+      </div>
+    </div>
+    <div className="space-y-3 mb-6">
+      <Skeleton className="h-4 w-full" />
+      <Skeleton className="h-4 w-full" />
+    </div>
+    <div className="flex justify-between pt-4 border-t border-slate-50 dark:border-slate-800">
+      <Skeleton className="h-6 w-20" />
+      <div className="flex gap-2">
+        <Skeleton className="h-8 w-8 rounded-lg" />
+        <Skeleton className="h-8 w-8 rounded-lg" />
+      </div>
+    </div>
+  </div>
+);
+
+const PatientsSkeleton = () => (
+  <div className="space-y-8">
+    <div className="flex justify-between items-center">
+      <div className="space-y-2">
+        <Skeleton className="h-8 w-48" />
+        <Skeleton className="h-4 w-32" />
+      </div>
+      <Skeleton className="h-10 w-40" />
+    </div>
+    <Skeleton className="h-16 w-full" />
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+        <PatientCardSkeleton key={i} />
+      ))}
+    </div>
+  </div>
+);
 
 const PatientCard = React.memo(({ patient }: { patient: Patient }) => (
   <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-all group relative overflow-hidden">
@@ -98,6 +140,7 @@ const PatientRow = React.memo(({ patient }: { patient: Patient }) => (
 ));
 
 const PatientsPage = () => {
+  const [isLoading, setIsLoading] = React.useState(true);
   const {
     viewMode,
     setViewMode,
@@ -106,6 +149,11 @@ const PatientsPage = () => {
     patients
   } = usePatientStore();
 
+  React.useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   const filteredPatients = useMemo(() => {
     return patients.filter(
       (p) =>
@@ -113,6 +161,8 @@ const PatientsPage = () => {
         p.condition.toLowerCase().includes(searchQuery.toLowerCase())
     );
   }, [patients, searchQuery]);
+
+  if (isLoading) return <PatientsSkeleton />;
 
   return (
     <div className="space-y-8">

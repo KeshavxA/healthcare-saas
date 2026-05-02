@@ -9,6 +9,7 @@ import {
   Search,
   ExternalLink
 } from "lucide-react";
+import Skeleton from "../../components/common/Skeleton";
 import { mockPatients } from "../../constants/mockData";
 
 const StatCard = ({ title, value, icon: Icon, trend, color }: any) => (
@@ -28,6 +29,37 @@ const StatCard = ({ title, value, icon: Icon, trend, color }: any) => (
   </div>
 );
 
+const DashboardSkeleton = () => (
+  <div className="space-y-8 pb-10">
+    <div className="flex justify-between items-center">
+      <div className="space-y-2">
+        <Skeleton className="h-8 w-48" />
+        <Skeleton className="h-4 w-32" />
+      </div>
+      <div className="flex gap-3">
+        <Skeleton className="h-10 w-10" />
+        <Skeleton className="h-10 w-32" />
+      </div>
+    </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {[1, 2, 3, 4].map((i) => (
+        <Skeleton key={i} className="h-32" />
+      ))}
+    </div>
+    <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+      <Skeleton className="xl:col-span-2 h-96" />
+      <div className="space-y-8">
+        <Skeleton className="h-32" />
+        <div className="grid grid-cols-2 gap-4">
+          {[1, 2, 3, 4].map((i) => (
+            <Skeleton key={i} className="h-24" />
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 const QuickAction = ({ icon: Icon, label, color }: any) => (
   <button className="flex flex-col items-center gap-3 p-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 hover:border-indigo-200 dark:hover:border-indigo-500/50 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all group">
     <div className={`p-3 rounded-xl ${color} text-white group-hover:scale-110 transition-transform`}>
@@ -38,7 +70,15 @@ const QuickAction = ({ icon: Icon, label, color }: any) => (
 );
 
 const DashboardPage = () => {
+  const [isLoading, setIsLoading] = React.useState(true);
   const recentPatients = mockPatients.slice(0, 5);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1200);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) return <DashboardSkeleton />;
 
   return (
     <div className="space-y-8 pb-10">

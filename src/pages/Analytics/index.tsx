@@ -4,10 +4,34 @@ import {
   BarChart, Bar, PieChart, Pie, Cell, AreaChart, Area
 } from "recharts";
 import { analyticsData } from "../../constants/mockData";
+import Skeleton from "../../components/common/Skeleton";
 
 const COLORS = ["#6366f1", "#818cf8", "#8b5cf6", "#a78bfa", "#c084fc"];
 
+const AnalyticsSkeleton = () => (
+  <div className="space-y-8 pb-10">
+    <div className="space-y-2">
+      <Skeleton className="h-8 w-48" />
+      <Skeleton className="h-4 w-32" />
+    </div>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {[1, 2, 3, 4].map((i) => (
+        <Skeleton key={i} className="h-96" />
+      ))}
+    </div>
+  </div>
+);
+
 const AnalyticsPage = () => {
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) return <AnalyticsSkeleton />;
+
   return (
     <div className="space-y-8 pb-10">
       <div>
