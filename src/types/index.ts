@@ -12,6 +12,17 @@ export interface Patient {
   avatar?: string;
 }
 
+export interface Appointment {
+  id: string;
+  title: string;
+  patientName: string;
+  doctorName: string;
+  start: Date;
+  end: Date;
+  status: "Scheduled" | "Completed" | "Cancelled";
+  type: "Consultation" | "Follow-up" | "Surgery" | "Routine Checkup";
+}
+
 export interface User {
   uid: string;
   email: string | null;

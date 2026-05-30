@@ -1,4 +1,4 @@
-import { Patient } from "../types";
+import { Patient, Appointment } from "../types";
 
 export const mockPatients: Patient[] = [
   {
@@ -277,3 +277,84 @@ export const analyticsData = {
     { name: "Other", value: 3 },
   ],
 };
+
+const today = new Date();
+const setDate = (daysOffset: number, hours: number, minutes: number) => {
+  const d = new Date(today);
+  d.setDate(d.getDate() + daysOffset);
+  d.setHours(hours, minutes, 0, 0);
+  return d;
+};
+
+export const mockAppointments: Appointment[] = [
+  {
+    id: "A001",
+    title: "Consultation - Rajesh Kumar",
+    patientName: "Rajesh Kumar",
+    doctorName: "Dr. Priya Sharma",
+    start: setDate(0, 9, 30),
+    end: setDate(0, 10, 0),
+    status: "Scheduled",
+    type: "Consultation",
+  },
+  {
+    id: "A002",
+    title: "Follow-up - Anita Deshmukh",
+    patientName: "Anita Deshmukh",
+    doctorName: "Dr. Arun Varma",
+    start: setDate(0, 11, 0),
+    end: setDate(0, 11, 30),
+    status: "Scheduled",
+    type: "Follow-up",
+  },
+  {
+    id: "A003",
+    title: "Routine Checkup - Vikram Singh",
+    patientName: "Vikram Singh",
+    doctorName: "Dr. Priya Sharma",
+    start: setDate(0, 14, 0),
+    end: setDate(0, 14, 45),
+    status: "Completed",
+    type: "Routine Checkup",
+  },
+  {
+    id: "A004",
+    title: "Consultation - Sunita Reddy",
+    patientName: "Sunita Reddy",
+    doctorName: "Dr. Arun Varma",
+    start: setDate(1, 10, 30),
+    end: setDate(1, 11, 15),
+    status: "Scheduled",
+    type: "Consultation",
+  },
+  {
+    id: "A005",
+    title: "Surgery - Mohit Malhotra",
+    patientName: "Mohit Malhotra",
+    doctorName: "Dr. Priya Sharma",
+    start: setDate(2, 9, 0),
+    end: setDate(2, 12, 0),
+    status: "Scheduled",
+    type: "Surgery",
+  },
+  {
+    id: "A006",
+    title: "Follow-up - Sonia Gupta",
+    patientName: "Sonia Gupta",
+    doctorName: "Dr. Arun Varma",
+    start: setDate(-1, 15, 0),
+    end: setDate(-1, 15, 30),
+    status: "Completed",
+    type: "Follow-up",
+  },
+  {
+    id: "A007",
+    title: "Routine Checkup - Amit Patel",
+    patientName: "Amit Patel",
+    doctorName: "Dr. Priya Sharma",
+    start: setDate(3, 10, 0),
+    end: setDate(3, 10, 30),
+    status: "Scheduled",
+    type: "Routine Checkup",
+  },
+];
