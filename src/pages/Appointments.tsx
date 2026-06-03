@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Calendar, dateFnsLocalizer, Event } from "react-big-calendar";
+import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import { format } from "date-fns/format";
 import { parse } from "date-fns/parse";
 import { startOfWeek } from "date-fns/startOfWeek";
@@ -25,8 +25,8 @@ const localizer = dateFnsLocalizer({
 });
 
 const AppointmentsPage = () => {
-  const [appointments, setAppointments] = useState<Appointment[]>(mockAppointments);
-  const [view, setView] = useState("month");
+  const [appointments] = useState<Appointment[]>(mockAppointments);
+  const [, setView] = useState("month");
   const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
   const navigate = useNavigate();
 
