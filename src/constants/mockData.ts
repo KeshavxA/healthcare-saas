@@ -12,6 +12,48 @@ export const mockPatients: Patient[] = [
     admissionDate: "2024-01-15",
     bloodGroup: "O+",
     contact: "+91 98765 43210",
+    weight: 78,
+    height: 175,
+    allergies: ["Penicillin", "Dust Mites"],
+    medicalHistory: ["Diagnosed with Hypertension in 2020", "Appendectomy in 2015"],
+    prescriptions: [
+      {
+        id: "RX-1001",
+        medication: "Lisinopril",
+        dosage: "10mg",
+        frequency: "Once daily",
+        duration: "30 days",
+        date: "2024-05-20",
+        doctor: "Dr. Priya Sharma"
+      },
+      {
+        id: "RX-1002",
+        medication: "Amlodipine",
+        dosage: "5mg",
+        frequency: "Once daily",
+        duration: "30 days",
+        date: "2024-05-20",
+        doctor: "Dr. Priya Sharma"
+      }
+    ],
+    labResults: [
+      {
+        id: "LAB-2001",
+        testName: "Complete Blood Count",
+        result: "Normal",
+        normalRange: "Standard",
+        date: "2024-05-15",
+        status: "Normal"
+      },
+      {
+        id: "LAB-2002",
+        testName: "Lipid Panel",
+        result: "LDL 130 mg/dL",
+        normalRange: "<100 mg/dL",
+        date: "2024-05-15",
+        status: "Abnormal"
+      }
+    ]
   },
   {
     id: "P002",

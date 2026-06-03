@@ -11,6 +11,7 @@ interface PatientState {
   setSearchQuery: (query: string) => void;
   setSelectedPatient: (patient: Patient | null) => void;
   getFilteredPatients: () => Patient[];
+  addPrescription: (patientId: string, prescription: any) => void;
 }
 
 export const usePatientStore = create<PatientState>()((set, get) => ({
@@ -29,4 +30,17 @@ export const usePatientStore = create<PatientState>()((set, get) => ({
         p.condition.toLowerCase().includes(searchQuery.toLowerCase())
     );
   },
+  addPrescription: (patientId, prescription) => {
+    set((state) => ({
+      patients: state.patients.map((p) => {
+        if (p.id === patientId) {
+          return {
+            ...p,
+            prescriptions: [...(p.prescriptions || []), prescription]
+          };
+        }
+        return p;
+      })
+    }));
+  }
 }));

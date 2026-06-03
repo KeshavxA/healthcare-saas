@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 /**
  * ARCHITECTURAL DECISION: Heavy Memoization Strategy
  * In a healthcare dashboard with potentially hundreds of patient records, UI jank is unacceptable.
@@ -77,8 +78,10 @@ const PatientsSkeleton = () => (
   </div>
 );
 
-const PatientCard = React.memo(({ patient }: { patient: Patient }) => (
-  <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-all group relative overflow-hidden">
+const PatientCard = React.memo(({ patient }: { patient: Patient }) => {
+  const navigate = useNavigate();
+  return (
+  <div onClick={() => navigate(`/patients/${patient.id}`)} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-all group relative overflow-hidden cursor-pointer">
     <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
       <button className="text-slate-400 hover:text-slate-600">
         <MoreVertical className="w-5 h-5" />
@@ -118,10 +121,13 @@ const PatientCard = React.memo(({ patient }: { patient: Patient }) => (
       </div>
     </div>
   </div>
-));
+  );
+});
 
-const PatientRow = React.memo(({ patient }: { patient: Patient }) => (
-  <tr className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors group">
+const PatientRow = React.memo(({ patient }: { patient: Patient }) => {
+  const navigate = useNavigate();
+  return (
+  <tr onClick={() => navigate(`/patients/${patient.id}`)} className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors group cursor-pointer">
     <td className="py-4 px-4">
       <div className="flex items-center gap-3">
         <div className="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center font-bold text-indigo-600">
@@ -145,7 +151,8 @@ const PatientRow = React.memo(({ patient }: { patient: Patient }) => (
       </button>
     </td>
   </tr>
-));
+  );
+});
 
 const PatientsPage = () => {
   const [isLoading, setIsLoading] = React.useState(true);

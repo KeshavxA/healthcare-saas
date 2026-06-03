@@ -10,6 +10,12 @@ export interface Patient {
   bloodGroup: string;
   contact: string;
   avatar?: string;
+  weight?: number;
+  height?: number;
+  allergies?: string[];
+  medicalHistory?: string[];
+  prescriptions?: Prescription[];
+  labResults?: LabResult[];
 }
 
 export interface Appointment {
@@ -41,3 +47,22 @@ export interface Notification {
 }
 
 export type ViewMode = "grid" | "list";
+
+export interface Prescription {
+  id: string;
+  medication: string;
+  dosage: string;
+  frequency: string;
+  duration: string;
+  date: string;
+  doctor: string;
+}
+
+export interface LabResult {
+  id: string;
+  testName: string;
+  result: string;
+  normalRange: string;
+  date: string;
+  status: "Normal" | "Abnormal" | "Critical";
+}
