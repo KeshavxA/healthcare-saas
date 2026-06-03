@@ -297,6 +297,62 @@ export const mockPatients: Patient[] = [
   }
 ];
 
+export const mockInvoices: any[] = [
+  {
+    id: "INV-2024-001",
+    patientId: "P001",
+    patientName: "Rajesh Kumar",
+    date: "2024-05-20",
+    dueDate: "2024-06-03",
+    amount: 150.00,
+    status: "Pending",
+    insuranceProvider: "BlueCross Health",
+    items: [
+      { id: "1", description: "General Consultation", amount: 100.00 },
+      { id: "2", description: "Blood Test", amount: 50.00 }
+    ]
+  },
+  {
+    id: "INV-2024-002",
+    patientId: "P002",
+    patientName: "Priya Sharma",
+    date: "2024-05-18",
+    dueDate: "2024-06-01",
+    amount: 85.00,
+    status: "Paid",
+    items: [
+      { id: "1", description: "Follow-up Consultation", amount: 85.00 }
+    ]
+  },
+  {
+    id: "INV-2024-003",
+    patientId: "P003",
+    patientName: "Amit Patel",
+    date: "2024-04-15",
+    dueDate: "2024-04-30",
+    amount: 250.00,
+    status: "Overdue",
+    items: [
+      { id: "1", description: "X-Ray Imaging", amount: 200.00 },
+      { id: "2", description: "Consultation", amount: 50.00 }
+    ]
+  },
+  {
+    id: "INV-2024-004",
+    patientId: "P004",
+    patientName: "Sneha Reddy",
+    date: "2024-05-25",
+    dueDate: "2024-06-10",
+    amount: 1200.00,
+    status: "Insurance Pending",
+    insuranceProvider: "MediCare Plus",
+    items: [
+      { id: "1", description: "Surgical Procedure", amount: 1000.00 },
+      { id: "2", description: "Anesthesia", amount: 200.00 }
+    ]
+  }
+];
+
 export const analyticsData = {
   monthlyAdmissions: [
     { month: "Jan", patients: 40 },

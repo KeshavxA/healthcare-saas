@@ -66,3 +66,21 @@ export interface LabResult {
   date: string;
   status: "Normal" | "Abnormal" | "Critical";
 }
+
+export interface InvoiceItem {
+  id: string;
+  description: string;
+  amount: number;
+}
+
+export interface Invoice {
+  id: string;
+  patientId: string;
+  patientName: string;
+  date: string;
+  dueDate: string;
+  amount: number;
+  status: "Paid" | "Pending" | "Overdue" | "Insurance Pending";
+  insuranceProvider?: string;
+  items: InvoiceItem[];
+}

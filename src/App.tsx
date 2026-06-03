@@ -11,6 +11,7 @@ const AnalyticsPage = lazy(() => import("./pages/Analytics"));
 const PatientsPage = lazy(() => import("./pages/Patients"));
 const AppointmentsPage = lazy(() => import("./pages/Appointments"));
 const TelemedicinePage = lazy(() => import("./pages/Telemedicine"));
+const BillingPage = lazy(() => import("./pages/Billing"));
 const PatientProfilePage = lazy(() => import("./pages/Patients/PatientProfile"));
 
 const PageLoader = () => (
@@ -72,6 +73,17 @@ function App() {
               <ProtectedRoute>
                 <MainLayout>
                   <PatientsPage />
+                </MainLayout>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/billing"
+            element={
+              <ProtectedRoute>
+                <MainLayout>
+                  <BillingPage />
                 </MainLayout>
               </ProtectedRoute>
             }

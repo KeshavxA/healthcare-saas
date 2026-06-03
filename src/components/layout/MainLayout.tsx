@@ -12,7 +12,8 @@ import {
   ChevronLeft,
   Moon,
   Sun,
-  Calendar
+  Calendar,
+  Receipt
 } from "lucide-react";
 import { useAuthStore } from "../../store/authStore";
 import { useThemeStore } from "../../store/themeStore";
@@ -99,6 +100,13 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             label="Appointments"
             to="/appointments"
             active={location.pathname === "/appointments"}
+            collapsed={isCollapsed}
+          />
+          <SidebarItem
+            icon={Receipt}
+            label="Billing"
+            to="/billing"
+            active={location.pathname === "/billing"}
             collapsed={isCollapsed}
           />
           <SidebarItem
