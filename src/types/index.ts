@@ -21,6 +21,8 @@ export interface Appointment {
   end: Date;
   status: "Scheduled" | "Completed" | "Cancelled";
   type: "Consultation" | "Follow-up" | "Surgery" | "Routine Checkup";
+  isVirtual?: boolean;
+  meetingLink?: string;
 }
 
 export interface User {

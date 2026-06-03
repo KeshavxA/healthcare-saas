@@ -296,6 +296,8 @@ export const mockAppointments: Appointment[] = [
     end: setDate(0, 10, 0),
     status: "Scheduled",
     type: "Consultation",
+    isVirtual: true,
+    meetingLink: "/telemedicine/A001",
   },
   {
     id: "A002",
@@ -326,6 +328,8 @@ export const mockAppointments: Appointment[] = [
     end: setDate(1, 11, 15),
     status: "Scheduled",
     type: "Consultation",
+    isVirtual: true,
+    meetingLink: "/telemedicine/A004",
   },
   {
     id: "A005",
